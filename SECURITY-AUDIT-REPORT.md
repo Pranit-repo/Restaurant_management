@@ -1,4 +1,4 @@
-# Security audit report — 15 August 2026
+<!-- # Security audit report — 15 August 2026
 
 Scope: full-repository security audit of Nodedr OrderRestro (auth/sessions,
 RBAC/multi-tenant isolation, API input validation/uploads/CORS/secrets,
@@ -176,4 +176,4 @@ dev/build artifacts (`.env`, source `.ts`/`.cs`, `node_modules`,
 *This report reflects the state of the repository as of commit `4d758bd`
 plus this document. It is a snapshot, not a standing guarantee — re-run the
 audit after any change to auth, permissions, tenant-scoped queries, money
-calculations, or the MSIX packaging.*
+calculations, or the MSIX packaging.* -->

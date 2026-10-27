@@ -30,8 +30,12 @@
     "nextjs"
   ],
   "scripts": {
+    "postinstall": "pnpm --filter @nodedr-restaurant/backend prisma:generate",
     "dev": "turbo run dev",
     "build": "turbo run build",
+    "start": "pnpm --filter @nodedr-restaurant/backend start:prod",
+    "start:backend": "pnpm --filter @nodedr-restaurant/backend start:prod",
+    "start:web": "pnpm --filter web start",
     "lint": "turbo run lint",
     "typecheck": "turbo run typecheck",
     "test": "turbo run test",

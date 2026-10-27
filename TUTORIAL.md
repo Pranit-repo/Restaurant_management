@@ -1,4 +1,4 @@
-# OrderRestro tutorial
+<!-- # OrderRestro tutorial
 
 Get from zero to your first UPI-paid order in about ten minutes, then set up staff, stock and accounts. Screenshots use fictional demo data.
 
@@ -291,4 +291,4 @@ Questions or bugs: [open an issue](https://github.com/Raktim94/nodedr-restaurant
 
 ---
 
-<sub>OrderRestro is developed by [NodeDR Infotech Private Limited](https://www.nodedr.com/) · [nodedr.com](https://www.nodedr.com/)</sub>
+<sub>OrderRestro is developed by [NodeDR Infotech Private Limited](https://www.nodedr.com/) · [nodedr.com](https://www.nodedr.com/)</sub> -->
