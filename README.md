@@ -1,4 +1,4 @@
-<div align="center">
+<!-- <div align="center">
 
 <img src="apps/web/public/brand-lockup.png" alt="Nodedr OrderRestro" width="520">
 
@@ -524,4 +524,4 @@ Maintainer: [Raktim Ranjit](https://www.raktimranjit.com/)
 self-hosted POS, UPI QR payment POS, GST billing software for restaurants,
 kitchen display system, KDS, restaurant inventory management, restaurant
 payroll and attendance, café POS, cloud kitchen software, QR table ordering,
-offline-first POS, NestJS, Next.js, PostgreSQL, Prisma, CasaOS, ZimaOS.</sub>
+offline-first POS, NestJS, Next.js, PostgreSQL, Prisma, CasaOS, ZimaOS.</sub> -->
