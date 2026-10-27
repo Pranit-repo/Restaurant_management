@@ -97,7 +97,19 @@ function resolveJwtSecret(): string {
 
 async function bootstrap() {
   process.env.JWT_SECRET = resolveJwtSecret();
-  if (!process.env.DATABASE_URL) {
+  if (process.env.DATABASE_URL) {
+    try {
+      const { execSync } = await import('node:child_process');
+      console.log('Applying database migrations (prisma migrate deploy)...');
+      execSync('npx prisma migrate deploy', { stdio: 'inherit' });
+      console.log('Database migrations successfully applied.');
+    } catch (err) {
+      console.warn(
+        'Database migration notice:',
+        err instanceof Error ? err.message : String(err),
+      );
+    }
+  } else {
     console.warn(
       'DATABASE_URL is not set in environment variables! Using default fallback. ' +
         'Please set DATABASE_URL in your cloud environment (e.g. Render Dashboard) to connect to PostgreSQL.',

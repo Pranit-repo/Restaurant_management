@@ -55,17 +55,23 @@ export class SyncService implements OnModuleInit, OnModuleDestroy {
   constructor(private readonly prisma: PrismaService) {}
 
   async onModuleInit() {
-    await this.prisma.$queryRawUnsafe('SELECT sync_install_triggers()');
-    const envKey = process.env.SYNC_API_KEY?.trim();
-    if (envKey) {
-      // This process is the central server other devices sync with.
-      await this.prisma.$executeRawUnsafe(
-        `UPDATE sync_state SET role = 'server', enabled = true, "apiKey" = $1 WHERE id = 1`,
-        envKey,
+    try {
+      await this.prisma.$queryRawUnsafe('SELECT sync_install_triggers()');
+      const envKey = process.env.SYNC_API_KEY?.trim();
+      if (envKey) {
+        // This process is the central server other devices sync with.
+        await this.prisma.$executeRawUnsafe(
+          `UPDATE sync_state SET role = 'server', enabled = true, "apiKey" = $1 WHERE id = 1`,
+          envKey,
+        );
+        if (!(await this.state()).seeded)
+          await this.prisma.$executeRawUnsafe('SELECT sync_seed()');
+        this.log.log('Sync server mode enabled (SYNC_API_KEY set)');
+      }
+    } catch (err) {
+      this.log.warn(
+        `Sync triggers setup skipped: ${err instanceof Error ? err.message : String(err)}`,
       );
-      if (!(await this.state()).seeded)
-        await this.prisma.$executeRawUnsafe('SELECT sync_seed()');
-      this.log.log('Sync server mode enabled (SYNC_API_KEY set)');
     }
     if (process.env.NODE_ENV !== 'test') {
       this.timer = setInterval(
