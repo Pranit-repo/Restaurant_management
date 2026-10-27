@@ -97,6 +97,14 @@ function resolveJwtSecret(): string {
 
 async function bootstrap() {
   process.env.JWT_SECRET = resolveJwtSecret();
+  if (!process.env.DATABASE_URL) {
+    console.warn(
+      'DATABASE_URL is not set in environment variables! Using default fallback. ' +
+        'Please set DATABASE_URL in your cloud environment (e.g. Render Dashboard) to connect to PostgreSQL.',
+    );
+    process.env.DATABASE_URL =
+      'postgresql://postgres:postgres@localhost:5432/nodedr_restaurant';
+  }
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
   app.use(
